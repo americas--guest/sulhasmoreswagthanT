@@ -1,0 +1,15 @@
+<template name="postItem">
+  <a class="item-post {{highlightedClass}}" href="{{path}}">
+    {{#with post}}
+      <span class="attribution">
+        <span class="title-post">{{title}}</span>
+        <span class="metadata-post">
+          <span class="author-post">{{source.name}}</span>
+          <span class="favorites-post"><span class="icon-favorite"></span> {favoriteCount}}</span>
+        </span>
+      </span>
+    {{/with}}
+
+    <img src="{{postImage post=post size=size}}" />
+  </a>
+</template>

@@ -1,6 +1,6 @@
-Template.recipeItem.helpers({
+Template.postItem.helpers({
   path: function () {
-    return Router.path('recipe', this.recipe);
+    return Router.path('post', this.post);
   },
   
   highlightedClass: function () {
@@ -9,7 +9,7 @@ Template.recipeItem.helpers({
   },
   
   favoriteCount: function () {
-    var count = FavoriteCounts.findOne({recipeName: this.name});
+    var count = FavoriteCounts.findOne({postName: this.name});
     return count && count.count;
   }
 });

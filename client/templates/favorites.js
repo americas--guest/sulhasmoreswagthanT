@@ -1,5 +1,5 @@
 Template.favorites.helpers({
-  recipeCount: function() {
-    return pluralize(this.length, 'recipe');
+  postCount: function() {
+    return pluralize(this.length, 'post');
   }
 });

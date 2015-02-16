@@ -1,14 +1,14 @@
-<template name="recipes">
-  <div class="page recipes">
+<template name="blog">
+  <div class="page blog">
     {{> nav title='My muse' black=true}}
 
     <div class="content-scrollable">
-      <div class="list-recipes">
+      <div class="list-blog">
         {{#each this}}
           {{#if highlighted}}
-            {{> recipeItem recipe=this size='large'}}
+            {{> postItem post=this size='large'}}
           {{else}}
-            {{> recipeItem recipe=this size='small'}}
+            {{> postItem post=this size='small'}}
           {{/if}}
         {{/each}}
       </div>

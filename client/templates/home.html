@@ -26,21 +26,21 @@
         {{else}}
           <div class="wrapper-message">
             <div class="title-message">No one is cooking yet!</div>
-            <div class="subtitle-message">Share that you made a recipe and it will show up here.</div>
+            <div class="subtitle-message">Share that you made a post and it will show up here.</div>
           </div>
         {{/each}}
       </div>
       <a href="{{pathFor 'feed'}}" class="btn-primary">The Scoop</a>
 
-      <h2 class="list-title">Our Favorite Recipes</h2>
+      <h2 class="list-title">Our Favorite Blog</h2>
       <div class="list-subtitle">Hand-picked by neighborhood chefs</div>
-      <div class="list-recipes">
-        {{#each featuredRecipes}}
-          {{> recipeItem recipe=this size='small'}}
+      <div class="list-blog">
+        {{#each featuredBlog}}
+          {{> postItem post=this size='small'}}
         {{/each}}
       </div>
 
-      <a href="{{pathFor 'recipes'}}" class="btn-primary">Neighborhood leader in SWAG</a>
+      <a href="{{pathFor 'blog'}}" class="btn-primary">Neighborhood leader in SWAG</a>
     </div>
 
   </div>

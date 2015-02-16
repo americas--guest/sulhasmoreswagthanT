@@ -3,13 +3,13 @@
     {{> nav title='Your Favorites' subtext=favoriteCount}}
 
     <div class="content-scrollable">
-      <div class="list-recipes">
+      <div class="list-blog">
         {{#each this}}
-          {{> recipeItem recipe=this size='large'}}
+          {{> postItem post=this size='large'}}
         {{else}}
           <div class="wrapper-message">
             <div class="title-message">No favorites yet</div>
-            <div class="subtitle-message">Tap <span class="icon-favorite-hollow"></span> to favorite your favorite recipes. <a href="{{pathFor 'home'}}">Return home</a></div>
+            <div class="subtitle-message">Tap <span class="icon-favorite-hollow"></span> to favorite your favorite blog. <a href="{{pathFor 'home'}}">Return home</a></div>
 
           </div>
         {{/each}}

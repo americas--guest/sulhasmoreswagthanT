@@ -1,24 +1,24 @@
-var TAB_KEY = 'recipeShowTab';
+var TAB_KEY = 'postShowTab';
 
-Template.recipe.created = function() {
+Template.post.created = function() {
   if (Router.current().params.activityId)
-    Template.recipe.setTab('feed');
+    Template.post.setTab('feed');
   else
-    Template.recipe.setTab('recipe');
+    Template.post.setTab('post');
 }
 
-Template.recipe.rendered = function () {
-  this.$('.recipe').touchwipe({
+Template.post.rendered = function () {
+  this.$('.post').touchwipe({
     wipeDown: function () {
-      if (Session.equals(TAB_KEY, 'recipe'))
-        Template.recipe.setTab('make')
+      if (Session.equals(TAB_KEY, 'post'))
+        Template.post.setTab('make')
     },
     preventDefaultEvents: false
   });
-  this.$('.attribution-recipe').touchwipe({
+  this.$('.attribution-post').touchwipe({
     wipeUp: function () {
-      if (! Session.equals(TAB_KEY, 'recipe'))
-        Template.recipe.setTab('recipe')
+      if (! Session.equals(TAB_KEY, 'post'))
+        Template.post.setTab('post')
     },
     preventDefaultEvents: false
   });
@@ -29,18 +29,18 @@ Template.recipe.rendered = function () {
 //   so we need to help the transition out by attaching another
 //   class that indicates if the feed tab should slide out of the
 //   way smoothly, right away, or after the transition is over
-Template.recipe.setTab = function(tab) {
+Template.post.setTab = function(tab) {
   var lastTab = Session.get(TAB_KEY);
   Session.set(TAB_KEY, tab);
   
-  var fromRecipe = (lastTab === 'recipe') && (tab !== 'recipe');
-  $('.feed-scrollable').toggleClass('instant', fromRecipe);
+  var fromPost = (lastTab === 'post') && (tab !== 'post');
+  $('.feed-scrollable').toggleClass('instant', fromPost);
 
-  var toRecipe = (lastTab !== 'recipe') && (tab === 'recipe');
-  $('.feed-scrollable').toggleClass('delayed', toRecipe);
+  var toPost = (lastTab !== 'post') && (tab === 'post');
+  $('.feed-scrollable').toggleClass('delayed', toPost);
 }
 
-Template.recipe.helpers({
+Template.post.helpers({
   isActiveTab: function(name) {
     return Session.equals(TAB_KEY, name);
   },
@@ -48,41 +48,41 @@ Template.recipe.helpers({
     return Session.get(TAB_KEY);
   },
   favorited: function() {
-    return Meteor.user() && _.include(Meteor.user().favoritedRecipeNames, this.name);
+    return Meteor.user() && _.include(Meteor.user().favoritedPostNames, this.name);
   },
   activities: function() {
-    return Activities.find({recipeName: this.name}, {sort: {date: -1}});
+    return Activities.find({postName: this.name}, {sort: {date: -1}});
   }
 });
 
-Template.recipe.events({
+Template.post.events({
   'click .js-add-favorite': function(event) {
     event.preventDefault();
 
     if (! Meteor.userId())
       return Overlay.open('authOverlay');
     
-    Meteor.call('favoriteRecipe', this.name);
+    Meteor.call('favoritePost', this.name);
   },
 
   'click .js-remove-favorite': function(event) {
     event.preventDefault();
 
-    Meteor.call('unfavoriteRecipe', this.name);
+    Meteor.call('unfavoritePost', this.name);
   },
   
-  'click .js-show-recipe': function(event) {
+  'click .js-show-post': function(event) {
     event.stopPropagation();
-    Template.recipe.setTab('make')
+    Template.post.setTab('make')
   },
   
   'click .js-show-feed': function(event) {
     event.stopPropagation();
-    Template.recipe.setTab('feed')
+    Template.post.setTab('feed')
   },
   
   'click .js-uncollapse': function() {
-    Template.recipe.setTab('recipe')
+    Template.post.setTab('post')
   },
 
   'click .js-share': function() {
