@@ -47,8 +47,8 @@ Template.recipe.helpers({
   activeTabClass: function() {
     return Session.get(TAB_KEY);
   },
-  bookmarked: function() {
-    return Meteor.user() && _.include(Meteor.user().bookmarkedRecipeNames, this.name);
+  favorited: function() {
+    return Meteor.user() && _.include(Meteor.user().favoritedRecipeNames, this.name);
   },
   activities: function() {
     return Activities.find({recipeName: this.name}, {sort: {date: -1}});
@@ -56,19 +56,19 @@ Template.recipe.helpers({
 });
 
 Template.recipe.events({
-  'click .js-add-bookmark': function(event) {
+  'click .js-add-favorite': function(event) {
     event.preventDefault();
 
     if (! Meteor.userId())
       return Overlay.open('authOverlay');
     
-    Meteor.call('bookmarkRecipe', this.name);
+    Meteor.call('favoriteRecipe', this.name);
   },
 
-  'click .js-remove-bookmark': function(event) {
+  'click .js-remove-favorite': function(event) {
     event.preventDefault();
 
-    Meteor.call('unbookmarkRecipe', this.name);
+    Meteor.call('unfavoriteRecipe', this.name);
   },
   
   'click .js-show-recipe': function(event) {

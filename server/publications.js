@@ -1,5 +1,5 @@
-Meteor.publish('bookmarkCounts', function() {
-  return BookmarkCounts.find();
+Meteor.publish('favoriteCounts', function() {
+  return FavoriteCounts.find();
 });
 
 Meteor.publish('news', function() {
@@ -17,17 +17,17 @@ Meteor.publish('feed', function() {
 Meteor.publish('recipe', function(name) {
   check(name, String);
   return [
-    BookmarkCounts.find({recipeName: name}),
+    FavoriteCounts.find({recipeName: name}),
     Activities.find({recipeName: name})
   ];
 });
 
-// autopublish the user's bookmarks and admin status
+// autopublish the user's favorites and admin status
 Meteor.publish(null, function() {
   return Meteor.users.find(this.userId, {
     fields: {
       admin: 1,
-      bookmarkedRecipeNames: 1,
+      favoritedRecipeNames: 1,
       'services.twitter.profile_image_url_https': 1
     }
   });

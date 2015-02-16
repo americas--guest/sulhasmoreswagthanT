@@ -7,8 +7,8 @@ if (typeof Meteor.settings === 'undefined')
 
 _.defaults(Meteor.settings, {
   twitter: {
-    consumerKey: "UXabeYjw6vuBvtj5ELFUP3dGl", 
-    secret: "OdzpUzqB6HWrmzgq673Jk6WV0kUBhaglrkbXc5V7rt2UCJmOZx"
+    consumerKey: "2cDJNGJIOTTqE5HpIyLKnqLFC", 
+    secret: "kYJMOfJE4b39C9cJnF1FCdoSY1TcvgpIbvfbnwHMMMiaqEE8MJ"
   }
 });
 

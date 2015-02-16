@@ -8,8 +8,8 @@ Template.recipeItem.helpers({
       return 'highlighted';
   },
   
-  bookmarkCount: function () {
-    var count = BookmarkCounts.findOne({recipeName: this.name});
+  favoriteCount: function () {
+    var count = FavoriteCounts.findOne({recipeName: this.name});
     return count && count.count;
   }
 });
